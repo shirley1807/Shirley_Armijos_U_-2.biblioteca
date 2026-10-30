@@ -27,8 +27,9 @@ def menu():
         print("        SISTEMA DE GESTIÓN DE BIBLIOTECA")
         print("="*50)
         print("1. Registrar libro")
-        print("2. Buscar libro por código")
-        print("6. Salir")
+print("2. Buscar libro por código")
+print("3. Mostrar catálogo ordenado por código")
+print("6. Salir")
         print("="*50)
         
         opcion = input("Seleccione una opción: ").strip()
@@ -41,6 +42,8 @@ def menu():
         elif opcion == "2":
             codigo = input("Código del libro a buscar: ").strip()
             buscar_libro(codigo)
+        elif opcion == "3":
+            mostrar_catalogo_ordenado()
         elif opcion == "6":
             print("Saliendo del sistema...")
             break
@@ -49,4 +52,12 @@ def menu():
 
 if __name__ == "__main__":
     menu()
-    
+    # R2: Catálogo ordenado — simula TreeMap
+def mostrar_catalogo_ordenado() -> None:
+    if not catalogo:
+        print("El catálogo está vacío.")
+        return
+    print("\n CATÁLOGO ORDENADO POR CÓDIGO:")
+    for codigo in sorted(catalogo.keys()):
+        libro = catalogo[codigo]
+        print(f"  {codigo}: {libro['titulo']} — {libro['autor']}")
